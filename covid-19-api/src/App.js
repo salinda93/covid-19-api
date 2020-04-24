@@ -39,12 +39,26 @@ export default class App extends React.Component{
     }
 
     async getCountryData(e){
+        if(e.target.value === "Worldwide") {
+            return this.getData();     
+        }
+        
+        try{
         const res = await Axios.get(`https://covid19.mathdro.id/api/countries/${e.target.value}`);
         this.setState({
             confirmed:res.data.confirmed.value,
             recovered:res.data.recovered.value,
-            deaths:res.data.deaths.value,
-        })
+            deaths:res.data.deaths.value
+        });
+    }
+    catch(err){
+        if(err.response.status===404)
+        this.setState({
+            confirmed:"No data available..",
+            recovered:"No data available..",
+            deaths:"No data available.."
+        });
+    }
     }
 
    
@@ -61,7 +75,7 @@ export default class App extends React.Component{
         <div className="container">
             <h1>Covid-19 Update</h1>
 
-            <select onChange={this.getCountryData}>
+            <select className="dropdown" onChange={this.getCountryData}>
                 {this.renderCountryOptions()}
             </select>
 

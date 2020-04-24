@@ -11,6 +11,16 @@
 
  }
 
+ .dropdown{
+     margin: 1em 0;
+    padding: 0.5em;
+    font-size: 1em;
+ }
+
+ .dropdown option{
+    word-wrap: break-word;
+ }
+
  .flex {
     min-height: 66vh;
     display: flex;
@@ -20,7 +30,7 @@
 }
 
 .box{
-    margin: 1em;
+    margin: 1em 0;
     width: 100%;
     padding: 0.5em;
     border-radius: 8px;
@@ -48,6 +58,7 @@
     }
 
     .box{
+        margin: 1em ;
         max-width: 300px;
         line-height: 1.5;
         font-size: 1.2em;
